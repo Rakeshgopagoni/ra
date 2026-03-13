@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Durga Mata Utsav Committee</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; }
+
+header { 
+position: sticky; 
+top: 0; 
+z-index: 1000; 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+padding: 15px 40px; 
+background-color: #8b0000; 
+color: white; 
+flex-wrap: wrap; 
+}
+
+.logo { display: flex; align-items: center; }
+.logo img { width: 45px; margin-right: 10px; }
+
+nav { display: flex; gap: 15px; flex-wrap: wrap; }
+nav a { color: white; text-decoration: none; font-weight: bold; cursor: pointer; }
+nav a:hover { text-decoration: underline; }
+
+.home { 
+height: 90vh; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+text-align: center; 
+color: white; 
+font-size: 42px; 
+padding: 0 60px; 
+transition: opacity 0.6s ease-in-out; 
+background-size: cover; 
+background-position: center; 
+position: relative; 
+animation: fadeBackground 15s infinite; 
+}
+
+.home::after { 
+content: ""; 
+position: absolute; 
+inset: 0; 
+background: radial-gradient(circle at center, rgba(255,215,0,0.15), rgba(0,0,0,0.6)); 
+}
+
+.home h1 { 
+animation: fadeSlide 2s ease-in-out; 
+position: relative; 
+z-index: 1; 
+}
+
+@keyframes fadeSlide { 
+from { opacity: 0; transform: translateY(30px); } 
+to { opacity: 1; transform: translateY(0); } 
+}
+
+@keyframes fadeBackground {
+0% { background-image: url('https://i.pinimg.com/originals/c0/2b/3e/c02b3e6ab2bfacd3eeb6231248d9920f.jpg'); }
+33% { background-image: url('https://wallpapers.com/images/hd/golden-durga-mata-hd-1ra1ojdbx5x7luyr.jpg'); }
+66% { background-image: url('https://thumbs.dreamstime.com/b/background-durga-puja-festival-india-hindu-goddess-idol-festivals-west-bengal-78534117.jpg'); }
+100% { background-image: url('https://i.pinimg.com/originals/c0/2b/3e/c02b3e6ab2bfacd3eeb6231248d9920f.jpg'); }
+}
+
+.donation-form, .about-section, .donation-list { 
+display: none; 
+padding: 50px 20px; 
+max-width: 600px; 
+margin: auto; 
+text-align: center; 
+}
+
+.donation-form input, .donation-form button { 
+display: block; 
+margin: 15px auto; 
+width: 80%; 
+max-width: 350px; 
+}
+
+input { 
+padding: 12px; 
+border: 1px solid #ccc; 
+border-radius: 4px; 
+}
+
+button { 
+padding: 10px 18px; 
+background-color: #8b0000; 
+color: white; 
+border: none; 
+border-radius: 4px; 
+cursor: pointer; 
+}
+
+button:hover { background-color: darkred; }
+
+.donation-list { overflow-x: auto; }
+
+table { 
+width: 100%; 
+min-width: 650px; 
+border-collapse: collapse; 
+margin-top: 25px; 
+}
+
+table, th, td { border: 1px solid #ccc; }
+
+th, td { 
+padding: 12px; 
+text-align: center; 
+}
+
+th { 
+background-color: #8b0000; 
+color: white; 
+}
+
+.action-btn { 
+font-size: 18px; 
+margin: 0 5px; 
+cursor: pointer; 
+border: none; 
+background: none; 
+}
+
+.action-btn:hover { color: darkred; }
+
+footer { 
+background-color: #8b0000; 
+color: white; 
+text-align: center; 
+padding: 25px 15px; 
+margin-top: 50px; 
+}
+
+footer a { color: white; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) { 
+header { flex-direction: column; padding: 15px 20px; } 
+.home { font-size: 26px; height: 70vh; padding: 0 20px; } 
+th, td { padding: 8px; font-size: 13px; } 
+}
+
+/* ⭐ TOP DONOR DASHBOARD STYLE */
+
+.donation-list h4{
+font-size:18px;
+margin:0;
+}
+
+.donation-list p{
+font-size:16px;
+font-weight:bold;
+margin:5px 0 0 0;
+}
+
+.payment-method{
+display:flex;
+justify-content:center;
+gap:30px;
+margin:15px 0;
+}
+
+.payOption{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:16px;
+}
+
+.receiptBtn{
+background:#8b0000;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:4px;
+cursor:pointer;
+}
+
+.receiptBtn:hover{
+background:#a40000;
+}
+
+</style>
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/049/530/821/small/silhouette-art-reflecting-durga-powerful-and-majestic-face-free-vector.jpg" alt="Durga Logo">
+        <h2>Durga Mata Utsav Committee</h2>
+    </div>
+    <nav>
+        <a onclick="showHome()">Home</a>
+        <a onclick="showDonation()">Donation</a>
+        <a onclick="showDonationList()">Donation List</a>
+        <a onclick="showAbout()">About</a>
+    </nav>
+</header>
+
+<div class="home" id="homeSection"><h1>Welcome to Durgadevi Navratri Utsavas</h1></div>
+
+<div class="donation-form" id="donationSection">
+    <h2>Donation Form</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="phone" placeholder="Enter Phone Number">
+    <input type="number" id="amount" placeholder="Enter Amount">
+  
+<div class="payment-method">
+
+    <label class="payOption">
+    <input type="checkbox" id="cash"> Cash
+    </label>
+
+    <label class="payOption">
+    <input type="checkbox" id="upi"> UPI
+    </label>
+
+</div>
+    <input type="text" id="location" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')" placeholder="Location">  
+    <div id="captcha"></div>
+    <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+    <button onclick="validateCaptcha()">Submit</button>
+</div>
+
+<div class="donation-list" id="donationListSection">
+    <h2>Donation Dashboard</h2>
+
+    <!-- Dashboard Cards -->
+<div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+
+    <div style="background:#fff3cd; padding:20px; border-radius:8px; min-width:200px;">
+        <h3>Total Donations</h3>
+        <h2 id="totalDonationsCount">0</h2>
+    </div>
+
+    <div style="background:#d4edda; padding:20px; border-radius:8px; min-width:200px;">
+        <h3>Total Amount</h3>
+        <h2>₹ <span id="totalAmount">0.00</span></h2>
+    </div>
+
+</div>
+
+<!-- TOP 5 DONORS DASHBOARD -->
+<div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+
+<div style="background:#e7f1ff; padding:15px; border-radius:8px; width:160px;">
+<h4>🥇 <span id="donor1">-</span></h4>
+<p>₹ <span id="amount1">0</span></p>
+</div>
+
+<div style="background:#e7f1ff; padding:15px; border-radius:8px; width:160px;">
+<h4>🥈 <span id="donor2">-</span></h4>
+<p>₹ <span id="amount2">0</span></p>
+</div>
+
+<div style="background:#e7f1ff; padding:15px; border-radius:8px; width:160px;">
+<h4>🥉 <span id="donor3">-</span></h4>
+<p>₹ <span id="amount3">0</span></p>
+</div>
+
+<div style="background:#e7f1ff; padding:15px; border-radius:8px; width:160px;">
+<h4>4️⃣ <span id="donor4">-</span></h4>
+<p>₹ <span id="amount4">0</span></p>
+</div>
+
+<div style="background:#e7f1ff; padding:15px; border-radius:8px; width:160px;">
+<h4>5️⃣ <span id="donor5">-</span></h4>
+<p>₹ <span id="amount5">0</span></p>
+</div>
+
+</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0; flex-wrap:wrap; gap:10px;">
+
+    <button onclick="downloadCSV()" style="padding:8px 15px;">
+     ⬇  Download List
+    </button>
+
+    <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="🔍 Search donor name..." 
+    onkeyup="searchDonation()"
+     style="padding:8px; width:250px; border:1px solid #ccc; border-radius:5px;">
+
+</div>
+
+    <!-- Donation Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Sr No</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Location</th>
+                <th>Receipt</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="donationTableBody"></tbody>
+    </table>
+
+</div>
+
+<div class="about-section" id="aboutSection">
+    <h2>About Durga Mata Utsav Committee</h2>
+    <p>Durga Mata Utsav Committee is a sacred and devotional organization formed with the blessings of Maa Durga to celebrate Navratri with faith and unity.</p>
+    <p>We organize Durga Puja celebrations, bhajans, cultural programs and spiritual gatherings.</p>
+    <p>Our mission is to preserve traditions and serve society through religious and social activities.</p>
+    <p>May Maa Durga bless all devotees with health, happiness and prosperity.</p>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  doc,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDeLlD26GUszhE3ZDx8wq327Q74Vc4L42I",
+  authDomain: "durga-mata-utsav-committ-82b6b.firebaseapp.com",
+  projectId: "durga-mata-utsav-committ-82b6b",
+  storageBucket: "durga-mata-utsav-committ-82b6b.firebasestorage.app",
+  messagingSenderId: "938582582345",
+  appId: "1:938582582345:web:2d72cc2d453c6c95574b98",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+/* ================= PAGE FUNCTIONS ================= */
+
+const homeSection = document.getElementById("homeSection");
+const donationSection = document.getElementById("donationSection");
+const aboutSection = document.getElementById("aboutSection");
+const donationListSection = document.getElementById("donationListSection");
+
+window.showHome = function(){
+  hideAll();
+  homeSection.style.display="flex";
+}
+
+window.showDonation = function(){
+  hideAll();
+  donationSection.style.display="block";
+  generateCaptcha();
+}
+
+window.showDonationList = async function(){
+  hideAll();
+  donationListSection.style.display="block";
+  await renderTable();
+}
+
+window.showAbout = function(){
+  hideAll();
+  aboutSection.style.display="block";
+}
+
+function hideAll(){
+  homeSection.style.display="none";
+  donationSection.style.display="none";
+  aboutSection.style.display="none";
+  donationListSection.style.display="none";
+}
+
+/* ================= CAPTCHA ================= */
+
+let captchaValue = 0;
+
+function generateCaptcha(){
+  let a=Math.floor(Math.random()*10);
+  let b=Math.floor(Math.random()*10);
+  captchaValue=a+b;
+  document.getElementById("captcha").innerHTML=`<b>${a} + ${b} = ?</b>`;
+}
+
+window.validateCaptcha = function(){
+  let userAnswer=parseInt(document.getElementById("captchaInput").value);
+  if(userAnswer!==captchaValue){
+    alert("Incorrect CAPTCHA!");
+    generateCaptcha();
+    return;
+  }
+  addDonation();
+}
+
+/* ================= ADD DONATION ================= */
+
+async function addDonation(){
+
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let amount = Number(document.getElementById("amount").value);
+  let location = document.getElementById("location").value.trim();
+
+  let cash = document.getElementById("cash").checked;
+  let upi = document.getElementById("upi").checked;
+
+  let payment="";
+
+  if(cash && upi){
+    payment="Cash + UPI";
+  }
+  else if(cash){
+    payment="Cash";
+  }
+  else if(upi){
+    payment="UPI";
+  }
+  else{
+    alert("Please select payment method");
+    return;
+  }
+
+  if(!name || !phone || !location || isNaN(amount) || amount<=0){
+    alert("Enter valid details!");
+    return;
+  }
+
+  if(!/^[0-9]{10}$/.test(phone)){
+    alert("Phone number must be 10 digits");
+    return;
+  }
+
+  if(!/^[A-Za-z\s]+$/.test(location)){
+    alert("Location must contain only letters (A-Z)");
+    return;
+  }
+
+  let receiptNo = await getNextReceiptNumber();
+
+await addDoc(collection(db,"donations"),{
+
+name:name,
+phone:phone,
+amount:amount,
+location:location,
+payment:payment,
+receiptNo:receiptNo,
+createdAt:Date.now()
+
+});
+
+import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function getNextReceiptNumber(){
+
+const ref = doc(db,"counters","receipt");
+const snap = await getDoc(ref);
+
+let current = snap.data().current;
+
+current++;
+
+await updateDoc(ref,{
+current: current
+});
+
+let receiptNo = "DMUC-" + String(current).padStart(4,'0');
+
+return receiptNo;
+
+}
+
+  alert("Donation Added Successfully");
+
+  document.getElementById("name").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("amount").value="";
+  document.getElementById("location").value="";
+  document.getElementById("captchaInput").value="";
+  document.getElementById("cash").checked=false;
+  document.getElementById("upi").checked=false;
+
+  await renderTable();
+  showDonationList();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+window.searchDonation = function(){
+
+let input = document.getElementById("searchInput").value.toLowerCase();
+let rows = document.querySelectorAll("#donationTableBody tr");
+
+rows.forEach(row => {
+
+let text = row.children[1].textContent.toLowerCase();
+
+if(text.includes(input)){
+row.style.display="";
+}else{
+row.style.display="none";
+}
+
+});
+
+}
+
+/* ================= LOGIN FUNCTION ================= */
+
+async function loginIfNeeded(){
+
+  try{
+
+    if(!auth.currentUser){
+        const result = await signInWithPopup(auth, provider);
+        const email = result.user.email;
+
+        if(email !== "durgamatautsavcommittee@gmail.com"){
+            alert("Only admin can edit or delete!");
+            return false;
+        }
+
+        return true;
+    }
+
+    if(auth.currentUser.email !== "durgamatautsavcommittee@gmail.com"){
+        alert("Only admin can edit or delete!");
+        return false;
+    }
+
+    return true;
+
+  }catch(e){
+    alert("Login failed: " + e.message);
+    return false;
+  }
+}
+
+/* ================= DELETE ================= */
+window.deleteDonation = async function(id){
+
+  const allowed = await loginIfNeeded();
+  if(!allowed) return;
+
+  if(!confirm("Are you sure you want to delete?")) return;
+
+  await deleteDoc(doc(db,"donations",id));
+  alert("Deleted Successfully");
+
+  renderTable();
+}
+
+/* ================= EDIT ================= */
+
+window.editDonation = async function(id,name,phone,amount,location){
+
+  const allowed = await loginIfNeeded();
+  if(!allowed) return;
+
+  let newName = prompt("Edit Name:", name);
+  let newPhone = prompt("Edit Phone:", phone);
+  let newAmount = prompt("Edit Amount:", amount);
+  let newLocation = prompt("Edit Location:", location);
+
+  /* ===== BASIC VALIDATION ===== */
+
+  if(!newName || !newPhone || !newAmount || !newLocation){
+    alert("Invalid input!");
+    return;
+  }
+
+  /* ===== PHONE VALIDATION ===== */
+
+  if(!/^[0-9]{10}$/.test(newPhone)){
+    alert("Phone number must be 10 digits");
+    return;
+  }
+
+  /* ===== AMOUNT VALIDATION ===== */
+
+  if(isNaN(newAmount) || Number(newAmount) <= 0){
+    alert("Enter valid donation amount");
+    return;
+  }
+
+  /* ===== LOCATION VALIDATION ===== */
+
+  if(!/^[A-Za-z\s]+$/.test(newLocation)){
+    alert("Location must contain only letters");
+    return;
+  }
+
+  await updateDoc(doc(db,"donations",id),{
+    name:newName.trim(),
+    phone:newPhone.trim(),
+    amount:Number(newAmount),
+    location:newLocation.trim()
+  });
+
+  alert("Updated Successfully");
+
+  renderTable();
+}
+
+/* ================= RENDER TABLE ================= */
+
+async function renderTable(){
+
+  let body = document.getElementById("donationTableBody");
+  body.innerHTML="";
+
+  let total = 0;
+  let index = 1;
+
+  let donations = [];
+
+  const querySnapshot = await getDocs(collection(db,"donations"));
+
+  querySnapshot.forEach((docSnap)=>{
+
+    let d = docSnap.data();
+    let id = docSnap.id;
+
+    total += Number(d.amount);
+
+    donations.push({
+      name:d.name,
+      phone:d.phone,
+      amount:Number(d.amount)
+    });
+
+    body.innerHTML += `
+    <tr>
+      <td>${index++}</td>
+      <td>${d.name}</td>
+      <td>${d.phone}</td>
+      <td>₹ ${Number(d.amount).toFixed(2)}</td>
+      <td>${d.payment || "-"}</td>
+      <td>${d.location || "-"}</td>
+      <td>
+        <button class="receiptBtn"
+onclick="openReceipt('${d.receiptNo}','${d.name}','${d.phone}',${d.amount},'${d.location}','${d.payment}')">
+Receipt
+</button>
+        </td>
+
+      <td>
+        <button onclick="editDonation('${id}','${d.name}','${d.phone}',${d.amount},'${d.location || ""}')">✏️</button>
+        <button onclick="deleteDonation('${id}')">🗑️</button>
+      </td>
+    </tr>
+    `;
+  });
+
+  /* TOP 5 DONATIONS (NOT MERGED) */
+
+  donations.sort((a,b)=>b.amount-a.amount);
+
+  let top5 = donations.slice(0,5);
+
+  for(let i=1;i<=5;i++){
+    document.getElementById("donor"+i).innerText="-";
+    document.getElementById("amount"+i).innerText="0";
+  }
+
+  top5.forEach((d,i)=>{
+    document.getElementById("donor"+(i+1)).innerText=d.name;
+    document.getElementById("amount"+(i+1)).innerText=d.amount;
+  });
+
+  document.getElementById("totalAmount").innerText = total.toFixed(2);
+  document.getElementById("totalDonationsCount").innerText = index-1;
+
+}
+
+window.openReceipt = function(receipt,name,phone,amount,address,payment){
+
+let url =
+"receipt.html"+
+"?receipt="+encodeURIComponent(receipt)+
+"&name="+encodeURIComponent(name)+
+"&phone="+encodeURIComponent(phone)+
+"&amount="+encodeURIComponent(amount)+
+"&address="+encodeURIComponent(address)+
+"&payment="+encodeURIComponent(payment);
+
+window.open(url,"_blank");
+
+}
+
+/* ================= DOWNLOAD CSV ================= */
+
+window.downloadCSV = async function(){
+
+  const querySnapshot = await getDocs(collection(db,"donations"));
+
+  if(querySnapshot.empty){
+    alert("No donations found!");
+    return;
+  }
+
+  let csv = "Sr No,Name,Phone,Amount,Payment,Location\n";
+  let index = 1;
+
+  querySnapshot.forEach((docSnap)=>{
+
+    let d = docSnap.data();
+
+    csv += `${index},"${d.name}","${d.phone}",${d.amount},"${d.payment || "-"}","${d.location || ""}"\n`;
+
+    index++;
+
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "donation_list.csv";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+};
+
+/* ================= START PAGE ================= */
+
+showHome();
+
+</script>
+
+<footer>
+    <p>📧 Email: 
+<a href="mailto:durgamatautsavcommittee@gmail.com">
+durgamatautsavcommittee@gmail.com
+</a>
+</p>
+
+<p>🌐 Website: 
+<a href="https://www.durgamautsav.com" target="_blank">
+www.durgamautsav.com
+</a>
+</p>
+<p>© 2026 Durga Mata Utsav Committee. All Rights Reserved.</p>
+</footer>
+</body>
+</html>
